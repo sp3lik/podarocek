@@ -1,0 +1,72 @@
+/* Door 2 styles, selectors prefixed .d2- */
+.d2-root,
+.d2-reward {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 760px 430px at 50% 56%, rgba(255, 207, 122, 0.17), rgba(255, 207, 122, 0) 72%),
+    repeating-linear-gradient(90deg, #1a1533 0 28px, #1f1939 28px 56px);
+}
+
+.d2-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.d2-intro {
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 32px;
+  font-size: 24px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--cream);
+}
+
+.d2-canvas {
+  display: block;
+  flex: 0 0 auto;
+  touch-action: none;
+}
+
+.d2-status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 0 80px;
+  text-align: center;
+}
+.d2-status-text {
+  margin: 0;
+  max-width: 1000px;
+  font-size: 28px;
+  line-height: 1.3;
+  color: var(--lamp);
+}
+
+/* The photo gives way to a long note instead of pushing it into a scrollbar. */
+.d2-reward .note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 510px;
+  text-align: center;
+}
+.d2-reward .note-title,
+.d2-reward .note-text {
+  flex: 0 0 auto;
+}
+.d2-reward .note-image {
+  flex: 0 1 auto;
+  min-height: 120px;
+  max-height: 340px;
+  object-fit: contain;
+  box-shadow: 0 0 0 4px var(--ink);
+}

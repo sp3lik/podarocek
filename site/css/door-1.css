@@ -1,0 +1,209 @@
+/* Door 1 styles, selectors prefixed .d1- */
+
+/* The same hallway as the hub (top 72px are behind the room bar), a little darker. */
+.d1-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: 1281px 720px;
+  background-position: 0 -72px;
+  image-rendering: pixelated;
+}
+.d1-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 14, 34, 0.12);
+}
+.d1-scene-reward::before { background: rgba(16, 14, 34, 0.3); }
+
+/* The notice on the wall: centred on the wall, the moon window stays free. */
+.d1-card {
+  position: absolute;
+  left: 170px;
+  top: 34px;
+  width: 800px;
+  padding: 16px 32px 20px;
+  background: var(--cream);
+  color: var(--ink);
+  text-align: center;
+  box-shadow: var(--frame), inset 0 -6px 0 0 #dcc9a0;
+}
+.d1-question {
+  margin: 0;
+  font-size: 46px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--carpet);
+}
+.d1-hint {
+  margin: 6px 0 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+/* The desk with the key rack on its front. */
+.d1-desk {
+  position: absolute;
+  left: 20px;
+  top: 258px;
+  bottom: 0;
+  width: 1100px;
+  background: #2f1f33;
+  box-shadow: -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink);
+}
+.d1-desk::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 26px;
+  bottom: 56px;
+  background: #38263c;
+  box-shadow: inset 0 0 0 4px #251829;
+}
+.d1-desk::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  background: var(--ink);
+  box-shadow: inset 0 4px 0 0 #a87722;
+}
+.d1-rail {
+  position: absolute;
+  z-index: 1;
+  left: -12px;
+  right: -12px;
+  top: -4px;
+  height: 18px;
+  background: var(--brass);
+  box-shadow: 0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink),
+    inset 0 4px 0 0 var(--lamp), inset 0 -4px 0 0 #a87722;
+}
+
+.d1-keys {
+  position: absolute;
+  z-index: 1;
+  left: 30px;
+  right: 30px;
+  top: 14px;
+  display: flex;
+  gap: 20px;
+}
+.d1-slot {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding-top: 30px;
+}
+.d1-hook {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 0;
+  width: 8px;
+  height: 52px;
+  margin-left: -4px;
+  background: var(--lamp);
+  box-shadow: -4px 0 0 0 var(--ink), 4px 0 0 0 #a87722;
+  pointer-events: none;
+}
+
+/* A key tag is a button, shaped like the letter tiles. */
+.d1-tag {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 268px;
+  padding: 48px 14px 16px;
+  border: 0;
+  background: var(--brass);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--frame), inset 0 4px 0 0 var(--lamp), inset 0 -4px 0 0 #a87722;
+}
+.d1-tag:hover { background: var(--lamp); }
+.d1-tag:active { transform: translateY(2px); }
+.d1-tag:focus-visible { outline: 4px solid var(--cream); outline-offset: 4px; }
+
+/* Engraved plaque line under the hole. */
+.d1-tag::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 38px;
+  bottom: 10px;
+  box-shadow: inset 0 0 0 2px rgba(42, 26, 46, 0.26);
+  pointer-events: none;
+}
+
+.d1-tag-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.d1-tag-num {
+  font-family: var(--font-label);
+  font-size: 22px;
+  line-height: 1;
+}
+/* A small key, 13 by 5 art pixels; takes the tag's text colour. */
+.d1-key {
+  display: block;
+  width: 3px;
+  height: 3px;
+  margin: 0 36px 12px 0;
+  box-shadow:
+    3px 0 currentColor, 6px 0 currentColor, 9px 0 currentColor,
+    0 3px currentColor, 12px 3px currentColor,
+    0 6px currentColor, 12px 6px currentColor, 15px 6px currentColor, 18px 6px currentColor, 21px 6px currentColor,
+    24px 6px currentColor, 27px 6px currentColor, 30px 6px currentColor, 33px 6px currentColor, 36px 6px currentColor,
+    0 9px currentColor, 12px 9px currentColor, 27px 9px currentColor, 33px 9px currentColor,
+    3px 12px currentColor, 6px 12px currentColor, 9px 12px currentColor;
+}
+.d1-tag-label {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+  margin-top: 10px;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.d1-tag-long .d1-tag-label { font-size: 20px; line-height: 1.15; }
+
+.d1-tag.d1-tag-wrong,
+.d1-tag.d1-tag-wrong:hover {
+  background: var(--carpet);
+  color: var(--cream);
+  box-shadow: var(--frame), inset 0 4px 0 0 #7d2f50, inset 0 -4px 0 0 #3f1428;
+}
+.d1-tag.d1-tag-right,
+.d1-tag.d1-tag-right:hover {
+  background: var(--mint);
+  color: var(--ink);
+  box-shadow: var(--frame), inset 0 4px 0 0 #a8efc9, inset 0 -4px 0 0 #3fa873;
+}
+.d1-answered .d1-tag { cursor: default; }
+.d1-answered .d1-tag:not(.d1-tag-right) { opacity: 0.4; }
+.d1-answered .d1-tag:not(.d1-tag-right):hover { background: var(--brass); }
+
+/* The reward sits on the wall too. */
+.d1-scene .reward {
+  position: relative;
+  width: 1140px;
+}
+.d1-scene .reward-letter-label { text-shadow: 2px 2px 0 var(--ink); }

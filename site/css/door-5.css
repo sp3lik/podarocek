@@ -1,0 +1,368 @@
+/* Door 5 styles, selectors prefixed .d5- */
+.d5-room {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.d5-backdrop {
+  position: absolute;
+  left: 0;
+  top: -72px;
+  width: 1281px;
+  height: 720px;
+}
+.d5-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 14, 34, 0.72);
+}
+.d5-room-reward .reward { position: relative; }
+
+/* ---------- Jukebox ---------- */
+.d5-juke-wrap {
+  position: absolute;
+  left: 36px;
+  top: 22px;
+  width: 396px;
+  height: 612px;
+}
+.d5-juke-wrap::before {
+  content: "";
+  position: absolute;
+  left: -60px;
+  right: -60px;
+  top: -40px;
+  bottom: 60px;
+  background: radial-gradient(closest-side,
+    rgba(255, 207, 122, 0.2) 0 45%,
+    rgba(255, 207, 122, 0.11) 45% 70%,
+    rgba(255, 207, 122, 0.05) 70% 90%,
+    transparent 90%);
+  pointer-events: none;
+}
+.d5-juke-wrap::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: -9px;
+  height: 18px;
+  background: rgba(16, 14, 34, 0.55);
+  z-index: 0;
+}
+.d5-juke {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 396px;
+  height: 612px;
+}
+.d5-deck {
+  position: absolute;
+  z-index: 2;
+  left: 45px;
+  top: 426px;
+  width: 306px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.d5-deck .btn {
+  padding: 8px 14px;
+  max-width: 290px;
+  white-space: nowrap;
+}
+
+/* ---------- Right-hand panel ---------- */
+.d5-panel {
+  position: absolute;
+  left: 468px;
+  top: 20px;
+  width: 788px;
+  height: 608px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 26px;
+  background: rgba(16, 14, 34, 0.93);
+  box-shadow: var(--frame), inset 0 0 0 4px var(--plum);
+}
+.d5-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.d5-lamps {
+  display: flex;
+  align-items: center;
+}
+.d5-lamp {
+  position: relative;
+  width: 70px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--plum);
+  color: #9d94ba;
+  font-family: var(--font-label);
+  font-size: 16px;
+  line-height: 1;
+  box-shadow: var(--frame);
+}
+.d5-lamp + .d5-lamp { margin-left: 18px; }
+.d5-lamp + .d5-lamp::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 21px;
+  width: 18px;
+  height: 8px;
+  background: var(--ink);
+}
+.d5-lamp.is-done {
+  background: #1f4a42;
+  color: var(--mint);
+}
+.d5-lamp.is-current {
+  background: var(--brass);
+  color: var(--ink);
+  box-shadow: var(--frame), inset 0 4px 0 0 var(--lamp), inset 0 -4px 0 0 #a87722;
+}
+.d5-lamp-star img {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+.d5-lamp-whole {
+  display: block;
+  width: 24px;
+  height: 8px;
+  background: currentColor;
+}
+.d5-labels {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: right;
+}
+.d5-label-main {
+  font-size: 26px;
+  line-height: 1.15;
+  color: var(--lamp);
+}
+.d5-label-sub {
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--cream);
+}
+.d5-label-hook { font-size: 30px; }
+
+.d5-question {
+  flex: 0 0 auto;
+  margin: 8px 0 2px;
+  font-size: 30px;
+  line-height: 1.2;
+  color: var(--cream);
+}
+
+/* ---------- Answer buttons: selector keys on the jukebox ---------- */
+.d5-options {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 4px;
+}
+.d5-options.is-answered { pointer-events: none; }
+.d5-opt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 60px;
+  padding: 6px 14px;
+  text-align: left;
+}
+.d5-opt-key {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brass);
+  color: var(--ink);
+  font-family: var(--font-label);
+  font-size: 16px;
+  line-height: 1;
+  box-shadow: inset 0 3px 0 0 var(--lamp), inset 0 -3px 0 0 #a87722;
+}
+.d5-opt-text { min-width: 0; }
+.btn.d5-opt-wrong:disabled { opacity: 0.42; }
+.btn.d5-opt-right,
+.btn.d5-opt-right:hover:not(:disabled) {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+/* ---------- Status: loading and load errors ---------- */
+.d5-status {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  min-height: 40px;
+  padding: 0 4px;
+}
+.d5-status-text {
+  flex: 1 1 100%;
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--amber);
+}
+.d5-status .btn { font-size: 22px; }
+
+/* ---------- The hotel window where the star appears ---------- */
+.d5-window {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  margin: 8px;
+  overflow: hidden;
+  background: #17143a;
+  box-shadow: 0 0 0 4px #a87722, 0 0 0 8px var(--brass), 0 0 0 12px var(--ink);
+}
+.d5-sky {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 3px;
+  background: var(--cream);
+  box-shadow:
+    112px 34px 0 var(--cream), 196px 92px 0 #a9bbd6, 262px 28px 0 #a9bbd6,
+    318px 148px 0 var(--cream), 372px 62px 0 #a9bbd6, 548px 40px 0 var(--cream),
+    612px 118px 0 #a9bbd6, 158px 170px 0 #a9bbd6, 86px 112px 0 var(--cream),
+    668px 62px 0 var(--cream), 240px 196px 0 var(--cream), 584px 186px 0 #a9bbd6,
+    430px 24px 0 #a9bbd6, 136px 62px 0 #a9bbd6, 646px 172px 0 var(--cream);
+  transform: translate(0, 0);
+}
+.d5-city {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 76px;
+  background: #0d0b20;
+  clip-path: polygon(
+    0 60%, 12% 60%, 12% 30%, 19% 30%, 19% 48%, 28% 48%, 28% 12%, 36% 12%, 36% 40%,
+    46% 40%, 46% 62%, 54% 62%, 54% 22%, 62% 22%, 62% 50%, 72% 50%, 72% 8%, 80% 8%,
+    80% 44%, 90% 44%, 90% 66%, 100% 66%, 100% 100%, 0 100%);
+}
+.d5-city::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--lamp);
+  box-shadow:
+    230px 24px 0 var(--lamp), 248px 44px 0 var(--amber), 110px 44px 0 var(--amber),
+    440px 36px 0 var(--lamp), 456px 54px 0 var(--amber), 590px 22px 0 var(--lamp),
+    606px 42px 0 var(--amber);
+  transform: translate(-20px, 0);
+}
+.d5-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 54px;
+  background: repeating-linear-gradient(90deg, var(--carpet) 0 12px, #7d2b50 12px 18px, #431630 18px 24px);
+  box-shadow: inset 0 8px 0 0 var(--brass);
+}
+.d5-curtain-left { left: 0; }
+.d5-curtain-right { right: 0; }
+
+.d5-star {
+  position: absolute;
+  z-index: 2;
+  left: 56%;
+  top: 8%;
+  width: 108px;
+  height: 108px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.d5-star::before {
+  content: "";
+  position: absolute;
+  inset: -52px;
+  background: radial-gradient(closest-side,
+    rgba(255, 207, 122, 0.5) 0 42%,
+    rgba(255, 207, 122, 0.24) 42% 68%,
+    rgba(255, 207, 122, 0.1) 68% 90%,
+    transparent 90%);
+  animation: d5-halo 0.36s steps(1) infinite;
+  pointer-events: none;
+}
+.d5-star::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+}
+.d5-star img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: d5-flicker 0.36s steps(1) infinite;
+}
+.d5-star:focus-visible { outline: 4px solid var(--lamp); outline-offset: 4px; }
+@keyframes d5-flicker {
+  0% { opacity: 1; transform: scale(1.14); filter: brightness(1.4); }
+  34% { opacity: 0.4; transform: scale(0.9); filter: brightness(0.85); }
+  67% { opacity: 0.85; transform: scale(1.04); filter: brightness(1.15); }
+}
+@keyframes d5-halo {
+  0% { opacity: 1; }
+  34% { opacity: 0.25; }
+  67% { opacity: 0.7; }
+}
+
+.d5-quote {
+  flex: 0 0 auto;
+  margin: 6px 4px 0;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--cream);
+}
+.d5-quote-author {
+  display: block;
+  margin-top: 4px;
+  font-size: 20px;
+  font-style: normal;
+  color: var(--amber);
+}
+.d5-hint {
+  flex: 0 0 auto;
+  margin: 4px 4px 0;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--lamp);
+}
+
+/* ---------- Reward view ---------- */
+.d5-reward-player {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.d5-mini-eq { display: block; }

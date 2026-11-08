@@ -1,0 +1,276 @@
+/* Door 6: the key rack on the wall of the night reception. Selectors prefixed .d6- */
+
+.d6-root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle 280px at 110px 170px, rgba(255, 207, 122, 0.3), transparent),
+    radial-gradient(circle 280px at 1170px 170px, rgba(255, 207, 122, 0.3), transparent),
+    radial-gradient(ellipse 620px 340px at 50% 46%, rgba(255, 207, 122, 0.12), transparent),
+    repeating-linear-gradient(90deg, #211a38 0 48px, #272042 48px 56px);
+}
+
+/* Two wall lamps, stepped like the pixel art in the hallway. */
+.d6-root::before,
+.d6-root::after {
+  content: "";
+  position: absolute;
+  top: 142px;
+  width: 28px;
+  height: 8px;
+  background: #fff0c8;
+  box-shadow: 0 12px 0 4px var(--lamp), 0 24px 0 8px var(--amber), 0 30px 0 8px #a87722;
+}
+.d6-root::before { left: 96px; }
+.d6-root::after { right: 96px; }
+
+.d6-wainscot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  background: var(--carpet);
+  box-shadow: inset 0 4px 0 0 var(--lamp), inset 0 12px 0 0 var(--brass), inset 0 16px 0 0 var(--ink);
+}
+
+.d6-intro {
+  position: absolute;
+  left: 50%;
+  top: 124px;
+  width: 880px;
+  margin: 0 0 0 -440px;
+  text-align: center;
+  font-size: 26px;
+  line-height: 1.3;
+  color: var(--cream);
+  text-shadow: 2px 2px 0 var(--ink);
+}
+.d6-root.is-arranged .d6-intro { display: none; }
+
+/* ---------- The rack ---------- */
+.d6-rack-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 228px;
+  display: flex;
+  justify-content: center;
+  transition: top 0.42s steps(7);
+}
+.d6-root.is-arranged .d6-rack-wrap { top: 28px; }
+.d6-root.is-missing .d6-rack-wrap { top: 48px; }
+
+.d6-rack {
+  --d6-tile-w: 100px;
+  --d6-tile-h: 134px;
+  --d6-gap: 32px;
+  --d6-pad: 44px;
+  position: relative;
+  flex: 0 0 auto;
+  width: calc(var(--d6-pad) * 2 + var(--d6-tile-w) * var(--d6-n) + var(--d6-gap) * (var(--d6-n) - 1));
+  height: 200px;
+  background: #43203a;
+  box-shadow: var(--frame), inset 0 6px 0 0 #6a3350, inset 0 -8px 0 0 #2d1528;
+}
+/* Two brass screws holding the board to the wall. */
+.d6-rack::before,
+.d6-rack::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  width: 12px;
+  height: 12px;
+  background: var(--brass);
+  box-shadow: inset 4px 4px 0 0 var(--lamp), inset -4px -4px 0 0 #a87722;
+}
+.d6-rack::before { left: 14px; }
+.d6-rack::after { right: 14px; }
+
+.d6-slot,
+.d6-key {
+  position: absolute;
+  top: 34px;
+  left: calc(var(--d6-pad) + (var(--d6-tile-w) + var(--d6-gap)) * var(--d6-slot));
+  width: var(--d6-tile-w);
+  height: var(--d6-tile-h);
+}
+
+.d6-slot { box-shadow: inset 0 0 0 4px rgba(16, 14, 34, 0.42); }
+/* The peg sits inside the hole of whichever tag hangs here. */
+.d6-slot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  z-index: 3;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  background: var(--lamp);
+  box-shadow: 2px 2px 0 0 #2d1528;
+}
+
+.d6-key {
+  z-index: 1;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: grab;
+  touch-action: none;
+  transition: left 0.16s steps(4), top 0.16s steps(4);
+}
+.d6-key:disabled,
+.d6-key-static { cursor: default; }
+.d6-key:focus { outline: none; }
+.d6-key:focus-visible .tile { outline: 4px solid var(--cream); outline-offset: 4px; }
+
+.d6-key .tile {
+  width: 100%;
+  height: 100%;
+  padding-top: 26px;
+}
+.d6-key .tile-hole { top: 14px; }
+.d6-key .tile-letter { font-size: 44px; }
+
+.d6-key:hover:not(:disabled):not(.d6-key-static) .tile { filter: brightness(1.12); }
+
+.d6-key.is-selected { z-index: 4; }
+.d6-key.is-selected .tile {
+  transform: translateY(-10px);
+  outline: 4px solid var(--lamp);
+  outline-offset: 4px;
+}
+
+.d6-key.is-target .tile {
+  outline: 4px dashed var(--lamp);
+  outline-offset: 4px;
+}
+
+.d6-key.is-dragging {
+  z-index: 5;
+  cursor: grabbing;
+  transition: none;
+}
+.d6-key.is-dragging .tile {
+  box-shadow: var(--frame), 10px 14px 0 0 rgba(16, 14, 34, 0.55),
+    inset 0 4px 0 0 var(--lamp), inset 0 -4px 0 0 #a87722;
+}
+
+.d6-root.is-just-solved .d6-key .tile {
+  animation: d6-shine 0.6s steps(4) both;
+  animation-delay: calc(var(--d6-slot) * 90ms);
+}
+@keyframes d6-shine {
+  0%, 100% { background-color: var(--brass); }
+  50% { background-color: #fff0c8; }
+}
+
+.d6-door-no {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-top: 26px;
+  font-family: var(--font-label);
+  font-size: 28px;
+  line-height: 1;
+  color: rgba(244, 231, 200, 0.5);
+}
+
+/* ---------- After the word is right ---------- */
+.d6-after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 248px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.d6-correct {
+  font-family: var(--font-label);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--mint);
+  text-shadow: 4px 4px 0 var(--ink);
+}
+
+.note.d6-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 660px;
+  padding: 20px 36px 28px;
+  overflow: visible;
+}
+.d6-label {
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--carpet);
+}
+.d6-hint {
+  margin-top: 10px;
+  font-family: var(--font-label);
+  font-size: 30px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.d6-row {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  margin-top: 16px;
+}
+.d6-input {
+  width: 360px;
+  height: 56px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 0;
+  background: #fff8e6;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 30px;
+  box-shadow: var(--frame);
+  user-select: text;
+}
+.d6-input::placeholder { color: #8f7f92; opacity: 1; }
+.d6-input::selection { background: var(--brass); color: var(--ink); }
+.d6-input:focus { outline: 4px solid var(--brass); outline-offset: 4px; }
+.d6-root.is-passed .d6-input { background: var(--mint); }
+
+.d6-wrong {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--lamp);
+  text-shadow: 2px 2px 0 var(--ink);
+}
+
+/* ---------- Not all letters yet ---------- */
+.d6-missing {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 286px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.note.d6-missing-note {
+  max-width: 820px;
+  margin: 0;
+  text-align: center;
+}
+.d6-door-list {
+  font-family: var(--font-label);
+  font-size: 20px;
+  color: var(--carpet);
+  white-space: nowrap;
+}

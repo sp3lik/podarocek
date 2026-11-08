@@ -1,0 +1,20 @@
+/* Bundled fonts, SIL Open Font License 1.1. Licence texts are in ../fonts/.
+   Press Start 2P is the original font, only compressed to WOFF2.
+   DotGothic16 is subset to Latin, Russian and punctuation; its outlines are unchanged. */
+
+@font-face {
+  font-family: "DotGothic16";
+  src: url("../fonts/DotGothic16-subset.woff2") format("woff2");
+  size-adjust: 94%;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("../fonts/PressStart2P-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

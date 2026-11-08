@@ -1,0 +1,173 @@
+/* Sky styles, selectors prefixed .sky- */
+
+/* The room: striped hotel wallpaper, one warm sconce of stepped light, a strip of carpet. */
+.sky-root {
+  background-color: #1a1533;
+  background-image:
+    linear-gradient(0deg, var(--carpet) 0 12px, var(--brass) 12px 16px, var(--ink) 16px 20px, transparent 20px),
+    radial-gradient(circle at 250px 320px,
+      rgba(255, 207, 122, 0.11) 0 170px,
+      rgba(255, 207, 122, 0.07) 170px 280px,
+      rgba(255, 207, 122, 0.04) 280px 400px,
+      transparent 400px),
+    repeating-linear-gradient(90deg, rgba(74, 65, 102, 0.22) 0 6px, transparent 6px 54px);
+}
+.sky-root .room-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 560px;
+  background: none;
+  box-shadow: none;
+}
+.sky-root .room-body {
+  position: absolute;
+  inset: 0;
+}
+
+/* Left column */
+.sky-panel {
+  position: absolute;
+  left: 40px;
+  top: 72px;
+  bottom: 20px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 22px;
+}
+.sky-panel p { margin: 0; }
+.sky-caption {
+  font-size: 46px;
+  line-height: 1.14;
+  color: var(--lamp);
+  text-shadow: 4px 4px 0 var(--ink);
+}
+.sky-when {
+  padding-top: 18px;
+  font-size: 28px;
+  color: var(--cream);
+  border-top: 4px solid var(--brass);
+}
+.sky-toggle { display: flex; gap: 20px; margin: 6px 4px 4px; }
+.sky-hint {
+  font-size: 24px;
+  line-height: 1.3;
+  color: #d9cdb4;
+}
+.sky-warning {
+  padding: 8px 12px;
+  background: var(--amber);
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+/* The round window */
+.sky-dome { position: absolute; }
+.sky-canvas,
+.sky-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+.sky-stars { position: absolute; inset: 0; }
+
+.sky-compass {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2px;
+  background: var(--brass);
+  color: var(--ink);
+  font-family: var(--font-label);
+  font-size: 20px;
+  line-height: 1;
+  box-shadow: var(--frame), inset 0 4px 0 0 var(--lamp), inset 0 -4px 0 0 #a87722;
+}
+.sky-compass-n { left: 50%; top: 6px; }
+.sky-compass-e { left: 6px; top: 50%; }
+.sky-compass-s { left: 50%; top: calc(100% - 6px); }
+.sky-compass-w { left: calc(100% - 6px); top: 50%; }
+
+/* Invisible hit areas over the glowing stars */
+.sky-star {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.sky-star:focus-visible { outline: 4px solid var(--lamp); outline-offset: -4px; }
+.sky-star-name {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 8px);
+  transform: translateX(-50%);
+  font-size: 20px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--cream);
+  text-shadow: 2px 0 0 var(--night), -2px 0 0 var(--night), 0 2px 0 var(--night), 0 -2px 0 var(--night);
+  pointer-events: none;
+}
+.sky-name-above .sky-star-name { top: auto; bottom: calc(100% - 8px); }
+.sky-star:hover .sky-star-name { color: var(--lamp); }
+.sky-star-ticket .sky-star-name { font-size: 24px; color: var(--lamp); }
+
+/* Lightbox contents */
+.sky-chat { display: block; }
+
+.sky-ticket {
+  position: relative;
+  display: flex;
+  width: 820px;
+  min-height: 400px;
+  background: var(--cream);
+  color: var(--ink);
+  box-shadow: var(--frame), inset 0 -6px 0 0 #dcc9a0;
+  animation: note-in 0.32s steps(5) both;
+}
+.sky-ticket::before,
+.sky-ticket::after {
+  content: "";
+  position: absolute;
+  left: 190px;
+  width: 36px;
+  height: 20px;
+  background: #16132c;
+}
+.sky-ticket::before { top: -4px; box-shadow: inset 0 -4px 0 0 var(--ink); }
+.sky-ticket::after { bottom: -4px; box-shadow: inset 0 4px 0 0 var(--ink); }
+.sky-ticket-stub {
+  flex: 0 0 208px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--carpet);
+  box-shadow: inset 0 -6px 0 0 #471830;
+  border-right: 8px dotted var(--cream);
+}
+.sky-ticket-star { display: block; width: 108px; height: 108px; }
+.sky-ticket-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 34px 44px;
+}
+.sky-ticket-line { margin: 0; font-size: 36px; line-height: 1.2; }
+.sky-ticket-line-1 { font-size: 38px; color: var(--carpet); }
+.sky-ticket-line-2 { font-size: 72px; line-height: 1.1; }
+.sky-ticket-line-3 { color: #7a4a14; }
